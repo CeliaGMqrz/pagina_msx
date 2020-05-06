@@ -6,4 +6,8 @@ app = Flask(__name__)
 def inicio():
 	return render_template("inicio.html")
 
+@app.route('/juegos')
+def juegos():
+    return render_template("juegos.html")
+
 app.run(debug=True)
