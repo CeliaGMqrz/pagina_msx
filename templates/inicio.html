@@ -1,5 +1,11 @@
 {% extends "base.html" %}
-{% block titulo %}Página principal{% endblock %}
+{% block title %}Pagina Principal{% endblock %}
 {% block contenido %}
-    <h1>Página principal</h1>
+<div class="inner">
+    <h1>WELCOME! || BIENVENID@ <span><br />
+    Aquí podrás encontrar infinidad de juegos MSX<br>
+    Here you can find many MSX games</span></h1>
+    <span><p>Haz click en nuestra mascota para ver los juegos!!</p></span>
+    <a href="/juegos"><img src="{{url_for('static', filename='images/mascota.png')}}" alt="Logo"/></a>
+</div>
 {% endblock %}
