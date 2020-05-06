@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Detalle del juego{% endblock %}
+{% block contenido %}
+	<div class="inner">
+		<header>
+            {% for juego in juegos -%}   
+            <h2>JUEGO: {{juego[1]}}</h2>
+            <ul>
+                    <li>Id: {{juego[0]}}</li>
+                    <li>Nombre: {{juego[1]}}</li>
+                    <li>Sistema: {{juego[2]}}</li>
+                    <li>Distribuidor: {{juego[3]}}</li>
+                    <li>Desarrollador: {{juego[4]}}</li>
+                    <li>Categoria: {{juego[5]}}</li>
+                    <li>Año: {{juego[6]}}</li>
+                </ul>
+            {% endfor -%}
+		</header>
+	</div>
+{% endblock %}
+

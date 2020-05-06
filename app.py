@@ -30,13 +30,28 @@ def listajuegos():
 			juegos.append(juego["nombre"])
 	return render_template("listajuegos.html",juegos=filtro)
 
-@app.route('/juego/<identificador>', methods=["GET","POST"])
+@app.route('/juego/<int:identificador>', methods=["GET","POST"])
 def detallejuego(identificador):
 	juegos=[]
+	desarrolladores=[]
+	identificadores=[]
+	sistemas=[]
+	distribuidores=[]
+	categorias=[]
+	anyos=[]
+
 	for juego in info:
-		if identificador in str(juego["id"]):
+		if identificador == int(juego["id"]):
 			juegos.append(str(juego["nombre"]))
-	return render_template("detallejuego.html",juegos=juegos)
+			desarrolladores.append(str(juego["desarrollador"]))
+			identificadores.append(str(juego["id"]))
+			sistemas.append(str(juego["sistema"]))
+			distribuidores.append(str(juego["distribuidor"]))
+			categorias.append(str(juego["categoria"]))
+			anyos.append(str(juego["año"]))
+			filtro=zip(identificadores,juegos,sistemas,distribuidores,desarrolladores,categorias,anyos)	
+	return render_template("detallejuego.html",juegos=filtro)
+		
 
 app.run(debug=True)
 
