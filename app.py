@@ -19,14 +19,24 @@ def listajuegos():
 	cadena=request.form.get("name")
 	juegos=[]
 	desarrolladores=[]
+	identificadores=[]
 	for juego in info:
 		if cadena in str(juego["nombre"]):
 			juegos.append(str(juego["nombre"]))
 			desarrolladores.append(str(juego["desarrollador"]))
-			filtro=zip(juegos,desarrolladores)	
+			identificadores.append(str(juego["id"]))
+			filtro=zip(juegos,desarrolladores,identificadores)	
 		elif cadena == "":
 			juegos.append(juego["nombre"])
 	return render_template("listajuegos.html",juegos=filtro)
+
+@app.route('/juego/<identificador>', methods=["GET","POST"])
+def detallejuego(identificador):
+	juegos=[]
+	for juego in info:
+		if identificador in str(juego["id"]):
+			juegos.append(str(juego["nombre"]))
+	return render_template("detallejuego.html",juegos=juegos)
 
 app.run(debug=True)
 
