@@ -18,12 +18,15 @@ def juegos():
 def listajuegos():
 	cadena=request.form.get("name")
 	juegos=[]
+	desarrolladores=[]
 	for juego in info:
 		if cadena in str(juego["nombre"]):
 			juegos.append(str(juego["nombre"]))
+			desarrolladores.append(str(juego["desarrollador"]))
+			filtro=zip(juegos,desarrolladores)	
 		elif cadena == "":
 			juegos.append(juego["nombre"])
-	return render_template("listajuegos.html",juegos=juegos)
+	return render_template("listajuegos.html",juegos=filtro)
 
 app.run(debug=True)
 

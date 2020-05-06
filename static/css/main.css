@@ -2584,6 +2584,7 @@
 
 		table td {
 			padding: 0.75em 0.75em;
+			color: white;
 		}
 
 		table th {
@@ -2628,7 +2629,7 @@
 			}
 
 	table tbody tr {
-		border-color: #e5474b;
+		border-color: #ffffff;
 	}
 
 		table tbody tr:nth-child(2n + 1) {
@@ -3362,7 +3363,7 @@
 
 	#banner {
 		background-color: #e5474b;
-		color: #f2a3a5;
+		color: #ffffff;
 		padding: 13em 0 11em 0;
 		background-color: #0c0c0c;
 		background-image: url("../images/banner.jpg");
@@ -3387,7 +3388,7 @@
 		}
 
 		#banner h1, #banner h2, #banner h3, #banner h4, #banner h5, #banner h6 {
-			color: rgb(255, 136, 0);
+			color: rgb(255, 153, 0);
 		}
 
 		#banner blockquote {
