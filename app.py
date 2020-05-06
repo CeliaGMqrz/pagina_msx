@@ -21,6 +21,8 @@ def listajuegos():
 	for juego in info:
 		if cadena in str(juego["nombre"]):
 			juegos.append(str(juego["nombre"]))
+		elif cadena == "":
+			juegos.append(juego["nombre"])
 	return render_template("listajuegos.html",juegos=juegos)
 
 app.run(debug=True)
