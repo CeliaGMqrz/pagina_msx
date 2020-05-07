@@ -14,11 +14,12 @@
 							<input type="text" name="name" placeholder="Pon aquí el nombre del juego" value="{{cadena}}" />
 							<select name= "cat">
 								{% if categorias %}
+								<option>Todos</option>
 								{% for elem in categorias -%}
 								{% if elem == categoria %}
-								<option value= "{{elem}}" selected="selected">{{elem.title()}}></option>
+								<option value= "{{elem}}" selected="selected">{{elem.title()}}</option>
 								{% else %}
-								<option value= "{{elem}}">{{elem.title()}}></option>
+								<option value= "{{elem}}">{{elem.title()}}</option>
 								{% endif %}
 								{% endfor -%}
 								{% endif %}
