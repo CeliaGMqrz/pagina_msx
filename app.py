@@ -1,3 +1,4 @@
+import os
 from flask import Flask,render_template,abort, request
 import json
 app = Flask(__name__)
@@ -77,6 +78,6 @@ def detallejuego(identificador):
 			filtro=zip(identificadores,juegos,sistemas,distribuidores,desarrolladores,categorias,anyos)	
 	return render_template("detallejuego.html",juegos=filtro)
 		
-
-app.run(debug=True)
+port=os.environ["PORT"]
+app.run('0.0.0.0', int(port), debug=False)
 
