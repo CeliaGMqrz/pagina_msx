@@ -11,8 +11,13 @@ def inicio():
 
 @app.route('/juegos',methods=["GET","POST"])
 def juegos():
+	categorias=[]
+	for i in info:
+		categorias.append(str(i["categoria"]))
+	categorias=list(set(categorias))
 	if request.method=="GET":
-		return render_template("juegos.html")
+		return render_template("juegos.html",categorias=categorias)
+	#Mejora de una sola ruta. No se utiliza la plantilla listajuegos.html 
 	else:
 		try:
 			cadena=request.form.get("name")
@@ -29,10 +34,10 @@ def juegos():
 				filtro=zip(juegos,desarrolladores,identificadores)	
 			elif cadena == "":
 				juegos.append(juego["nombre"])
-		return render_template("juegos.html",juegos=filtro,cadena=cadena)
+		return render_template("juegos.html",juegos=filtro,cadena=cadena,categorias=categorias)
 
 
-
+# Sin la mejora de una sola ruta.
 #@app.route('/listajuegos', methods=["POST"])
 #def listajuegos():
 #	cadena=request.form.get("name")
