@@ -33,7 +33,7 @@ def juegos():
 				desarrolladores.append(str(juego["desarrollador"]))
 				identificadores.append(str(juego["id"]))
 				filtro=zip(juegos,desarrolladores,identificadores,categorias)	
-			elif cadena == "":
+			elif cadena == "" and categoria == "":
 				juegos.append(juego["nombre"])
 		return render_template("juegos.html",juegos=filtro,cadena=cadena,categorias=categorias,categoria=categoria)
 
