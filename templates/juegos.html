@@ -8,7 +8,7 @@
 		<div class="inner" id="formulario">
 			<section>
 				<h3>Busca aquí tus juegos</h3>
-				<form method="POST" action="/listajuegos">
+				<form method="post" action="/juegos">
 					<div class="row uniform 50%">
 						<div class="6u 12u$(xsmall)">
 							<input type="text" name="name" placeholder="Pon aquí el nombre del juego" />
@@ -23,4 +23,29 @@
 			</section>
 		</div>
 	</div>
+	<div class="inner">
+		<header>
+			<h2>LISTA JUEGOS MSX</h2>
+		</header>
+		<div class="inner" id="formulario">
+			<section>
+                <h3>Juegos</h3>
+                <table>
+                    <tr>
+                        <td>Nombres</td>
+                        <td>Desarrolladores</td>
+                        <td>Más información</td>
+                    </tr>
+                    {% for elem in juegos -%}
+                    <tr>
+                        <td><strong>{{elem[0]}}</strong></td>
+                        <td><strong>{{elem[1]}}</strong></td>
+                        <td><u><a href="/juego/{{elem[2]}}">detalle</a></u></td>
+                    </tr>
+                    {% endfor -%}
+                </table>
+			</section>
+		</div>
+	</div>
 {% endblock %}
+

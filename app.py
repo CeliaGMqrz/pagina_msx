@@ -5,30 +5,49 @@ app = Flask(__name__)
 with open("MSX.json") as fichero:
     info=json.load(fichero)
 
-@app.route('/')
+@app.route('/',methods=["GET"])
 def inicio():
 	return render_template("inicio.html")
 
 @app.route('/juegos',methods=["GET","POST"])
 def juegos():
-    return render_template("juegos.html")
+	if request.method=="GET":
+		return render_template("juegos.html")
+	else:
+		cadena=request.form.get("name")
+		try:
+			juegos=[]
+			desarrolladores=[]
+			identificadores=[]
+			for juego in info:
+				if cadena in str(juego["nombre"]):
+					juegos.append(str(juego["nombre"]))
+					desarrolladores.append(str(juego["desarrollador"]))
+					identificadores.append(str(juego["id"]))
+					filtro=zip(juegos,desarrolladores,identificadores)	
+				elif cadena == "":
+					juegos.append(juego["nombre"])
+		except:
+			abort(404)
+		return render_template("juegos.html",juegos=filtro)
 
 
-@app.route('/listajuegos', methods=["POST"])
-def listajuegos():
-	cadena=request.form.get("name")
-	juegos=[]
-	desarrolladores=[]
-	identificadores=[]
-	for juego in info:
-		if cadena in str(juego["nombre"]):
-			juegos.append(str(juego["nombre"]))
-			desarrolladores.append(str(juego["desarrollador"]))
-			identificadores.append(str(juego["id"]))
-			filtro=zip(juegos,desarrolladores,identificadores)	
-		elif cadena == "":
-			juegos.append(juego["nombre"])
-	return render_template("listajuegos.html",juegos=filtro)
+
+#@app.route('/listajuegos', methods=["POST"])
+#def listajuegos():
+#	cadena=request.form.get("name")
+#	juegos=[]
+#	desarrolladores=[]
+#	identificadores=[]
+#	for juego in info:
+#		if cadena in str(juego["nombre"]):
+#			juegos.append(str(juego["nombre"]))
+#			desarrolladores.append(str(juego["desarrollador"]))
+#			identificadores.append(str(juego["id"]))
+#			filtro=zip(juegos,desarrolladores,identificadores)	
+#		elif cadena == "":
+#			juegos.append(juego["nombre"])
+#	return render_template("listajuegos.html",juegos=filtro)
 
 @app.route('/juego/<int:identificador>', methods=["GET","POST"])
 def detallejuego(identificador):
