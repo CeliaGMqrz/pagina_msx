@@ -14,22 +14,22 @@ def juegos():
 	if request.method=="GET":
 		return render_template("juegos.html")
 	else:
-		cadena=request.form.get("name")
 		try:
-			juegos=[]
-			desarrolladores=[]
-			identificadores=[]
-			for juego in info:
-				if cadena in str(juego["nombre"]):
-					juegos.append(str(juego["nombre"]))
-					desarrolladores.append(str(juego["desarrollador"]))
-					identificadores.append(str(juego["id"]))
-					filtro=zip(juegos,desarrolladores,identificadores)	
-				elif cadena == "":
-					juegos.append(juego["nombre"])
+			cadena=request.form.get("name")
 		except:
 			abort(404)
-		return render_template("juegos.html",juegos=filtro)
+		juegos=[]
+		desarrolladores=[]
+		identificadores=[]
+		for juego in info:
+			if cadena in str(juego["nombre"]):
+				juegos.append(str(juego["nombre"]))
+				desarrolladores.append(str(juego["desarrollador"]))
+				identificadores.append(str(juego["id"]))
+				filtro=zip(juegos,desarrolladores,identificadores)	
+			elif cadena == "":
+				juegos.append(juego["nombre"])
+		return render_template("juegos.html",juegos=filtro,cadena=cadena)
 
 
 

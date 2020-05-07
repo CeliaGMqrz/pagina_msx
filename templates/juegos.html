@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Pagina de busqueda{% endblock %}
+{% block title %}Búsqueda de juegos{% endblock %}
 {% block contenido %}
 	<div class="inner">
 		<header>
@@ -11,7 +11,7 @@
 				<form method="post" action="/juegos">
 					<div class="row uniform 50%">
 						<div class="6u 12u$(xsmall)">
-							<input type="text" name="name" placeholder="Pon aquí el nombre del juego" />
+							<input type="text" name="name" placeholder="Pon aquí el nombre del juego" value="{{cadena}}" />
 						<div class="12u$">
 							<ul class="actions">
 								<li><input type="submit" value="Buscar" class="special" /></li>
@@ -23,6 +23,8 @@
 			</section>
 		</div>
 	</div>
+
+{% if juegos %}
 	<div class="inner">
 		<header>
 			<h2>LISTA JUEGOS MSX</h2>
@@ -47,5 +49,6 @@
 			</section>
 		</div>
 	</div>
+{% endif %}
 {% endblock %}
 
