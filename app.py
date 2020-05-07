@@ -1,5 +1,5 @@
 import os
-from flask import Flask,render_template,abort, request
+from flask import Flask, render_template, abort,request
 import json
 app = Flask(__name__)
 
@@ -80,4 +80,3 @@ def detallejuego(identificador):
 		
 port=os.environ["PORT"]
 app.run('0.0.0.0', int(port), debug=False)
-
