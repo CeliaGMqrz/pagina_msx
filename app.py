@@ -23,18 +23,19 @@ def juegos():
 			cadena=request.form.get("name")
 		except:
 			abort(404)
+		categoria=request.form.get("cat")
 		juegos=[]
 		desarrolladores=[]
 		identificadores=[]
 		for juego in info:
-			if cadena in str(juego["nombre"]):
+			if cadena in str(juego["nombre"]) and categoria == str(juego["categoria"]):
 				juegos.append(str(juego["nombre"]))
 				desarrolladores.append(str(juego["desarrollador"]))
 				identificadores.append(str(juego["id"]))
-				filtro=zip(juegos,desarrolladores,identificadores)	
+				filtro=zip(juegos,desarrolladores,identificadores,categorias)	
 			elif cadena == "":
 				juegos.append(juego["nombre"])
-		return render_template("juegos.html",juegos=filtro,cadena=cadena,categorias=categorias)
+		return render_template("juegos.html",juegos=filtro,cadena=cadena,categorias=categorias,categoria=categoria)
 
 
 # Sin la mejora de una sola ruta.

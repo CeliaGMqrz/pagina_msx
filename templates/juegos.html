@@ -12,10 +12,14 @@
 					<div class="row uniform 50%">
 						<div class="6u 12u$(xsmall)">
 							<input type="text" name="name" placeholder="Pon aquí el nombre del juego" value="{{cadena}}" />
-							<select name= "categorias">
+							<select name= "cat">
 								{% if categorias %}
 								{% for elem in categorias -%}
+								{% if elem == categoria %}
+								<option value= "{{elem}}" selected="selected">{{elem.title()}}></option>
+								{% else %}
 								<option value= "{{elem}}">{{elem.title()}}></option>
+								{% endif %}
 								{% endfor -%}
 								{% endif %}
 							</select>
@@ -44,13 +48,15 @@
                         <td>Desarrolladores</td>
                         <td>Más información</td>
                     </tr>
-                    {% for elem in juegos -%}
+					{% for elem in juegos -%}
+						{% if elem[0] and elem[3] %}
                     <tr>
                         <td><strong>{{elem[0]}}</strong></td>
                         <td><strong>{{elem[1]}}</strong></td>
                         <td><u><a href="/juego/{{elem[2]}}">detalle</a></u></td>
                     </tr>
-                    {% endfor -%}
+						{% endif %}
+					{% endfor -%}
                 </table>
 			</section>
 		</div>
